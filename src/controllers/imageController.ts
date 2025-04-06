@@ -17,9 +17,6 @@ s3Controller.get(
 		const response = await s3Repositories.getList(bucket, prefix);
 		const imageList = response.Contents?.filter((content) => content.Key)
 			.map((content) => content.Key ?? "") ?? [];
-		if (!imageList) {
-			return error(404, { error: "Dont have images in this bucket" });
-		}
 		return imageList;
 	}, {
 	detail: {
