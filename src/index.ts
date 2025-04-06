@@ -1,7 +1,8 @@
 import { Elysia, redirect } from "elysia";
 import swagger from "@elysiajs/swagger";
-import s3Controller from "./controllers/imageController";
 import cors from "@elysiajs/cors";
+import imageController from "./controllers/imageController";
+import vedioController from "./controllers/vedioController";
 
 
 const app = new Elysia()
@@ -22,7 +23,8 @@ app.get(
 	{ detail: { tags: ["Home"], summary: "Home", description: "Redirect to API docs" } }
 );
 
-app.use(s3Controller);
+app.use(imageController);
+app.use(vedioController);
 
 app.listen(3000);
 
