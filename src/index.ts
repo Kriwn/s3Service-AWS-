@@ -2,7 +2,7 @@ import { Elysia, redirect } from "elysia";
 import swagger from "@elysiajs/swagger";
 import cors from "@elysiajs/cors";
 import imageController from "./controllers/imageController";
-import vedioController from "./controllers/vedioController";
+import videoController from "./controllers/videoController";
 
 
 const app = new Elysia()
@@ -24,7 +24,7 @@ app.get(
 );
 
 app.use(imageController);
-app.use(vedioController);
+app.use(videoController);
 
 app.listen(3000);
 

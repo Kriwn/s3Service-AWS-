@@ -33,7 +33,7 @@ imageController.get(
 		const s3Repositories = new s3Repository();
 		const render = new Render();
 		const response = await s3Repositories.getObject(bucket, newkey);
-		const image = await render.vedioReader( params.key, response);
+		const image = await render.videoReader( params.key, response);
 		if (!image) {
 			return error(404, { error: "Dont have images in this bucket" });
 		}
@@ -59,7 +59,7 @@ imageController.get(
 		const newkey = prefix+"/"+params.key.trim().replace(/\s+/g, "_");
 		const render = new Render();
 		const response = await s3Repositories.getObject(bucket, newkey);
-		const image = await render.vedioReaderHTTP(params.key, response);
+		const image = await render.videoReaderHTTP(params.key, response);
 		if (!image) {
 			return error(404, { error: "Dont have images in this bucket" });
 		}

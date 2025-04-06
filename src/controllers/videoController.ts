@@ -4,13 +4,13 @@ import Render from "../utils/reder";
 
 
 const prefix = "videos";
-const vedioController = new Elysia({
+const videoController = new Elysia({
 	prefix: "/api/video",
 	tags: ["Video"],
 })
 
 
-vedioController.get(
+videoController.get(
 	"/",
 	async () => {
 		const bucket = process.env.AWS_BUCKET as string;
@@ -21,12 +21,12 @@ vedioController.get(
 		return videoList;
 	}, {
 	detail: {
-		sumarry: "List all vedio from s3",
-		detail: "List all vedio from s3",
+		sumarry: "List all video from s3",
+		detail: "List all video from s3",
 	}
 });
 
-vedioController.get(
+videoController.get(
 	"/:key",
 	async ({ params }) => {
 		const bucket = process.env.AWS_BUCKET as string;
@@ -45,14 +45,14 @@ vedioController.get(
 			key: t.String(),
 		}),
 		detail: {
-			sumarry: "Get a vedio from s3 and return a file",
-			detail: "Get a vedio from s3 and return a file",
+			sumarry: "Get a video from s3 and return a file",
+			detail: "Get a video from s3 and return a file",
 		}
 
 	}
 );
 
-vedioController.get(
+videoController.get(
 	"/http/:key",
 	async ({ params }) => {
 		const bucket = process.env.AWS_BUCKET as string;
@@ -71,14 +71,14 @@ vedioController.get(
 			key: t.String(),
 		}),
 		detail: {
-			sumarry: "Get a vedio from s3 and return a http response",
-			detail: "Get a vedio from s3 and return a http response",
+			sumarry: "Get a video from s3 and return a http response",
+			detail: "Get a video from s3 and return a http response",
 		}
 
 	}
 );
 
-vedioController.post(
+videoController.post(
 	"/",
 	async ({ body }) => {
 		const bucket = process.env.AWS_BUCKET as string
@@ -100,13 +100,13 @@ vedioController.post(
 			typeFile: t.Optional(t.String())
 		}),
 		detail: {
-			sumarry: "Create a vedio",
-			detail: "Create a vedio",
+			sumarry: "Create a video",
+			detail: "Create a video",
 		}
 	}
 );
 
-vedioController.delete(
+videoController.delete(
 	"/",
 	async ({ body }) => {
 		const bucket = process.env.AWS_BUCKET as string;
@@ -120,10 +120,10 @@ vedioController.delete(
 			key: t.String(),
 		}),
 		detail: {
-			sumarry: "Delete a vedio",
-			detail: "Delete a vedio",
+			sumarry: "Delete a video",
+			detail: "Delete a video",
 		}
 	}
 );
 
-export default vedioController;
+export default videoController;

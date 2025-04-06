@@ -26,21 +26,21 @@ class Render {
 		});
 	}
 
-	async vedioReader(key: string,data: GetObjectCommandOutput) {
+	async videoReader(key: string,data: GetObjectCommandOutput) {
 		if (!data.Body) {
 			return null;
 		}
-		const vedio = await data.Body.transformToByteArray();
-		return new File([vedio], key, { type: data.ContentType });
+		const video = await data.Body.transformToByteArray();
+		return new File([video], key, { type: data.ContentType });
 	}
 
-	async vedioReaderHTTP(key: string,data: GetObjectCommandOutput) {
+	async videoReaderHTTP(key: string,data: GetObjectCommandOutput) {
 		if (!data.Body) {
 			return null;
 		}
-		const vedio = await data.Body.transformToByteArray();
-		const file = new File([vedio], key, { type: data.ContentType });
-		return new Response(vedio, {
+		const video = await data.Body.transformToByteArray();
+		const file = new File([video], key, { type: data.ContentType });
+		return new Response(video, {
 			headers: {
 				"Content-Type": file.type,
 			},
