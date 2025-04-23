@@ -9,7 +9,6 @@ const videoController = new Elysia({
 	tags: ["Video"],
 })
 
-
 videoController.get(
 	"/",
 	async () => {
@@ -34,7 +33,7 @@ videoController.get(
 		const s3Repositories = new s3Repository();
 		const render = new Render();
 		const response = await s3Repositories.getObject(bucket, newkey);
-		const image = await render.imageReader( params.key, response);
+		const image = await render.videoReader( params.key, response);
 		if (!image) {
 			return error(404, { error: "Dont have images in this bucket" });
 		}
@@ -48,7 +47,6 @@ videoController.get(
 			sumarry: "Get a video from s3 and return a file",
 			detail: "Get a video from s3 and return a file",
 		}
-
 	}
 );
 
@@ -60,7 +58,7 @@ videoController.get(
 		const newkey = prefix+"/"+params.key.trim().replace(/\s+/g, "_");
 		const render = new Render();
 		const response = await s3Repositories.getObject(bucket, newkey);
-		const image = await render.imageReaderHTTP(params.key, response);
+		const image = await render.videoReaderHTTP(params.key, response);
 		if (!image) {
 			return error(404, { error: "Dont have images in this bucket" });
 		}
